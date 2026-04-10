@@ -24,503 +24,127 @@
     --font-cond: 'Barlow Condensed', sans-serif;
     --font-body: 'Barlow', sans-serif;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
+  body { background: var(--navy); color: var(--white); font-family: var(--font-body); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
 
-  body {
-    background: var(--navy);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    background: linear-gradient(180deg, #020810 0%, #050f1e 40%, #0a1a2f 100%);
-  }
-
-  .hero-stars {
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 55% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 80% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 35% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 10% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 45% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 60% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 88% 12%, rgba(200,220,255,0.8) 0%, transparent 100%),
-      radial-gradient(1px 1px at 42% 22%, rgba(255,255,255,0.3) 0%, transparent 100%);
-  }
-
-  /* SVG mountain range */
-  .hero-mountains {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    width: 100%;
-  }
-
-  .hero-glow {
-    position: absolute;
-    bottom: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 200px;
-    background: radial-gradient(ellipse, rgba(74,158,218,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    padding: 0 60px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-cond);
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--border);
-    padding: 6px 14px;
-    border-radius: 2px;
-    margin-bottom: 24px;
-    background: rgba(74,158,218,0.06);
-  }
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .hero-logo {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-  .logo-box {
-    width: 56px; height: 56px;
-    background: var(--blue2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display);
-    font-size: 22px;
-    color: var(--accent2);
-    letter-spacing: 0.05em;
-  }
-  .logo-text {
-    font-family: var(--font-cond);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(60px, 8vw, 110px);
-    line-height: 0.92;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-  .hero-title span {
-    color: var(--accent);
-    display: block;
-  }
-
-  .hero-meta {
-    display: flex;
-    gap: 40px;
-    font-family: var(--font-cond);
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-    margin-top: 24px;
-  }
+  /* HERO */
+  .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; background: linear-gradient(180deg, #020810 0%, #050f1e 40%, #0a1a2f 100%); }
+  .hero-stars { position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 55% 8%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 80% 25%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 35% 30%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 10% 40%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 45% 5%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 88% 12%, rgba(200,220,255,0.8) 0%, transparent 100%); }
+  .hero-mountains { position: absolute; bottom: 0; left: 0; right: 0; width: 100%; }
+  .hero-glow { position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%); width: 600px; height: 200px; background: radial-gradient(ellipse, rgba(74,158,218,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-content { position: relative; z-index: 10; padding: 0 60px 80px; max-width: 1200px; margin: 0 auto; width: 100%; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-cond); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px; margin-bottom: 24px; background: rgba(74,158,218,0.06); }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .hero-logo { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .logo-img { width: 64px; height: 64px; border-radius: 8px; background: #1a1560; padding: 6px; object-fit: contain; border: 1px solid var(--border); }
+  .logo-text { font-family: var(--font-cond); font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
+  .logo-text strong { display: block; font-size: 15px; color: var(--white); letter-spacing: 0.15em; margin-bottom: 2px; }
+  .hero-title { font-family: var(--font-display); font-size: clamp(60px, 8vw, 110px); line-height: 0.92; letter-spacing: 0.02em; color: var(--white); margin-bottom: 20px; }
+  .hero-title span { color: var(--accent); display: block; }
+  .hero-meta { display: flex; gap: 40px; font-family: var(--font-cond); font-size: 13px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; border-top: 1px solid var(--border); padding-top: 20px; margin-top: 24px; }
   .hero-meta strong { color: var(--white); }
 
-  /* ── LAYOUT ── */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
+  .section-num { font-family: var(--font-display); font-size: 72px; line-height: 1; color: rgba(74,158,218,0.15); letter-spacing: -2px; }
+  .section-title { font-family: var(--font-display); font-size: 42px; letter-spacing: 0.05em; color: var(--white); }
+  .section-title em { color: var(--accent); font-style: normal; }
 
-  /* ── SECTION ── */
-  .section {
-    padding: 80px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-  .section-num {
-    font-family: var(--font-display);
-    font-size: 72px;
-    line-height: 1;
-    color: rgba(74,158,218,0.15);
-    letter-spacing: -2px;
-  }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: 42px;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
-  .section-title em {
-    color: var(--accent);
-    font-style: normal;
-  }
-
-  /* ── KPI GRID ── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-bottom: 60px;
-  }
-  .kpi-card {
-    background: var(--navy2);
-    padding: 32px 28px;
-    transition: background 0.2s;
-  }
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 24px; }
+  .kpi-card { background: var(--navy2); padding: 32px 28px; transition: background 0.2s; }
   .kpi-card:hover { background: var(--navy3); }
-  .kpi-label {
-    font-family: var(--font-cond);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .kpi-value {
-    font-family: var(--font-display);
-    font-size: 48px;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    line-height: 1;
-  }
-  .kpi-sub {
-    font-size: 12px;
-    color: var(--accent);
-    margin-top: 6px;
-    font-family: var(--font-cond);
-    letter-spacing: 0.06em;
-  }
+  .kpi-label { font-family: var(--font-cond); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .kpi-value { font-family: var(--font-display); font-size: 48px; letter-spacing: 0.02em; color: var(--white); line-height: 1; }
+  .kpi-sub { font-size: 12px; color: var(--accent); margin-top: 6px; font-family: var(--font-cond); letter-spacing: 0.06em; }
+  .kpi-sub.good { color: #5ddb8a; }
+  .kpi-sub.warn { color: var(--gold2); }
+  .kpi-sub.bad { color: #e06060; }
 
-  /* ── CHART CARDS ── */
-  .chart-grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 24px;
-  }
-  .chart-grid-3 {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
-    margin-bottom: 24px;
-  }
-  .chart-card {
-    background: var(--navy2);
-    border: 1px solid var(--border);
-    padding: 28px;
-    border-radius: 2px;
-  }
-  .chart-title {
-    font-family: var(--font-cond);
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .chart-title::before {
-    content: '';
-    width: 3px; height: 14px;
-    background: var(--accent);
-    border-radius: 2px;
-  }
+  /* CHART CARDS */
+  .chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .chart-grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .chart-card { background: var(--navy2); border: 1px solid var(--border); padding: 28px; border-radius: 2px; margin-bottom: 0; }
+  .chart-card.mb { margin-bottom: 24px; }
+  .chart-title { font-family: var(--font-cond); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+  .chart-title::before { content: ''; width: 3px; height: 14px; background: var(--accent); border-radius: 2px; }
 
-  /* ── COUNTRY TABLE ── */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--font-cond);
-  }
-  .data-table th {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-  }
-  .data-table td {
-    padding: 12px 14px;
-    border-bottom: 1px solid rgba(74,158,218,0.08);
-    font-size: 14px;
-    color: var(--white);
-  }
+  /* DATA TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-family: var(--font-cond); }
+  .data-table th { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 12px 14px; border-bottom: 1px solid rgba(74,158,218,0.08); font-size: 14px; color: var(--white); }
   .data-table tr:hover td { background: rgba(74,158,218,0.04); }
   .data-table tr:last-child td { border-bottom: none; }
-
-  .badge {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 2px;
-    font-family: var(--font-cond);
-    font-weight: 600;
-  }
+  .badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; font-family: var(--font-cond); font-weight: 600; }
   .badge-lead { background: rgba(74,158,218,0.15); color: var(--accent2); }
   .badge-int { background: rgba(201,168,76,0.15); color: var(--gold2); }
-
   .val-good { color: #5ddb8a; }
   .val-warn { color: var(--gold2); }
   .val-bad { color: #e06060; }
 
-  /* ── CREATIVE TABLE ── */
-  .creative-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.2fr;
-    gap: 12px;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(74,158,218,0.08);
-    font-family: var(--font-cond);
-    font-size: 14px;
-  }
-  .creative-row.header {
-    font-size: 11px;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 0 0 10px;
-    border-bottom: 1px solid var(--border);
-  }
+  /* CREATIVE ROWS */
+  .creative-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.2fr; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(74,158,218,0.08); font-family: var(--font-cond); font-size: 14px; }
+  .creative-row.header { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); padding: 0 0 10px; border-bottom: 1px solid var(--border); }
   .creative-name { font-weight: 600; color: var(--white); }
-  .creative-format {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    text-transform: uppercase;
-  }
-  .mini-bar-bg {
-    height: 4px;
-    background: rgba(74,158,218,0.15);
-    border-radius: 2px;
-    margin-top: 4px;
-  }
-  .mini-bar-fill {
-    height: 4px;
-    background: var(--accent);
-    border-radius: 2px;
-  }
+  .creative-format { font-size: 10px; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; }
+  .mini-bar-bg { height: 4px; background: rgba(74,158,218,0.15); border-radius: 2px; margin-top: 4px; }
+  .mini-bar-fill { height: 4px; background: var(--accent); border-radius: 2px; }
 
-  /* ── CONCLUSIONS ── */
-  .conclusions {
-    background: var(--navy2);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
-    padding: 40px 48px;
-    margin-top: 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .conclusions::before {
-    content: '"';
-    position: absolute;
-    top: -20px; right: 30px;
-    font-family: var(--font-display);
-    font-size: 200px;
-    color: rgba(74,158,218,0.04);
-    line-height: 1;
-  }
-  .conclusions-title {
-    font-family: var(--font-display);
-    font-size: 32px;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 32px;
-  }
-  .conclusion-item {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(74,158,218,0.1);
-  }
+  /* CONCLUSIONS */
+  .conclusions { background: var(--navy2); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 40px 48px; margin-top: 0; position: relative; overflow: hidden; }
+  .conclusions::before { content: '"'; position: absolute; top: -20px; right: 30px; font-family: var(--font-display); font-size: 200px; color: rgba(74,158,218,0.04); line-height: 1; }
+  .conclusions-title { font-family: var(--font-display); font-size: 32px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 32px; }
+  .conclusion-item { display: flex; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(74,158,218,0.1); }
   .conclusion-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .conclusion-num {
-    font-family: var(--font-display);
-    font-size: 40px;
-    color: rgba(74,158,218,0.3);
-    line-height: 1;
-    min-width: 48px;
-  }
-  .conclusion-text { }
-  .conclusion-text strong {
-    display: block;
-    font-family: var(--font-cond);
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--white);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-  }
-  .conclusion-text p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+  .conclusion-num { font-family: var(--font-display); font-size: 40px; color: rgba(74,158,218,0.3); line-height: 1; min-width: 48px; }
+  .conclusion-text strong { display: block; font-family: var(--font-cond); font-size: 16px; font-weight: 600; letter-spacing: 0.06em; color: var(--white); margin-bottom: 4px; text-transform: uppercase; }
+  .conclusion-text p { font-size: 14px; color: var(--muted); line-height: 1.6; }
   .conclusion-text p b { color: var(--accent2); font-weight: 500; }
 
-  /* ── FOOTER ── */
-  .footer {
-    padding: 40px 0;
-    text-align: center;
-    font-family: var(--font-cond);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-transform: uppercase;
-    border-top: 1px solid var(--border);
-  }
+  /* FOOTER */
+  .footer { padding: 40px 0; text-align: center; font-family: var(--font-cond); font-size: 12px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; border-top: 1px solid var(--border); }
 
-  /* ── DIVIDER ── */
-  .mountain-divider {
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    margin: 0;
-  }
-
-  /* ── ANIMATE IN ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* ANIMATE */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-stars"></div>
   <div class="hero-glow"></div>
-
-  <!-- SVG Mountain Silhouette -->
   <svg class="hero-mountains" viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
     <defs>
-      <linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#dceeff" stop-opacity="0.9"/>
-        <stop offset="40%" stop-color="#6aabdd" stop-opacity="0.5"/>
-        <stop offset="100%" stop-color="#050f1e" stop-opacity="0"/>
-      </linearGradient>
-      <linearGradient id="midGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#1a3a5c" stop-opacity="0.85"/>
-        <stop offset="100%" stop-color="#050f1e" stop-opacity="1"/>
-      </linearGradient>
-      <linearGradient id="foreGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0a1a2f" stop-opacity="1"/>
-        <stop offset="100%" stop-color="#050f1e" stop-opacity="1"/>
-      </linearGradient>
-      <linearGradient id="snowline" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#e8f4ff" stop-opacity="1"/>
-        <stop offset="80%" stop-color="#4a9eda" stop-opacity="0.4"/>
-        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-      </linearGradient>
-      <!-- Glow on peaks -->
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="4" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
+      <linearGradient id="midGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a3a5c" stop-opacity="0.85"/><stop offset="100%" stop-color="#050f1e" stop-opacity="1"/></linearGradient>
+      <linearGradient id="foreGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a1a2f" stop-opacity="1"/><stop offset="100%" stop-color="#050f1e" stop-opacity="1"/></linearGradient>
+      <linearGradient id="snowline" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8f4ff" stop-opacity="1"/><stop offset="80%" stop-color="#4a9eda" stop-opacity="0.4"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
-
-    <!-- Background distant range -->
     <polygon points="0,400 80,300 160,340 240,260 320,300 400,220 480,270 560,190 640,240 720,150 800,200 880,160 960,210 1040,170 1120,220 1200,180 1280,230 1360,190 1440,210 1440,500 0,500" fill="url(#midGrad)" opacity="0.5"/>
-
-    <!-- Main peaks -->
     <polygon points="0,450 100,380 200,410 300,340 400,380 520,280 600,310 700,230 720,245 740,230 800,280 880,300 960,250 1060,280 1160,300 1260,260 1360,300 1440,340 1440,500 0,500" fill="url(#midGrad)"/>
-
-    <!-- Snow caps on main peaks -->
     <polygon points="700,230 720,185 740,230 730,228 720,230 710,228" fill="url(#snowline)" filter="url(#glow)"/>
     <polygon points="520,280 545,248 570,280 556,276" fill="url(#snowline)" filter="url(#glow)"/>
     <polygon points="960,250 975,225 990,250 980,248" fill="url(#snowline)" filter="url(#glow)"/>
-
-    <!-- Foreground range -->
     <polygon points="0,480 80,440 160,460 260,420 380,440 460,400 560,430 680,390 780,420 900,380 1020,400 1140,370 1260,400 1360,380 1440,400 1440,500 0,500" fill="url(#foreGrad)"/>
-
-    <!-- Very foreground -->
     <polygon points="0,500 120,470 240,490 360,465 480,485 600,460 720,480 840,455 960,475 1080,460 1200,475 1320,465 1440,480 1440,500 0,500" fill="#050f1e"/>
-
-    <!-- Subtle horizontal glow line at horizon -->
     <line x1="0" y1="310" x2="1440" y2="310" stroke="rgba(74,158,218,0.15)" stroke-width="1"/>
   </svg>
-
   <div class="hero-content">
     <div class="hero-logo">
-      <div class="logo-box">AMG</div>
-      <div class="logo-text">Adventure Marketing Group<br>Facebook Ads · Cuenta 64639015</div>
+      <img class="logo-img" src="data:image/png;base64,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" alt="Aconcagua Mountain Guides" />
+      <div class="logo-text">
+        <strong>Aconcagua Mountain Guides</strong>
+        Facebook Ads · Cuenta 64639015
+      </div>
     </div>
     <div class="hero-badge">Informe de rendimiento · Últimos 90 días</div>
-    <h1 class="hero-title">
-      Rendimiento<br>
-      <span>Campañas</span>
-    </h1>
+    <h1 class="hero-title">Rendimiento<br><span>Campañas</span></h1>
     <div class="hero-meta">
       <div><strong>Período:</strong> Últimos 90 días</div>
       <div><strong>Fuente:</strong> Facebook Ads / Windsor.ai</div>
@@ -530,52 +154,28 @@
   </div>
 </section>
 
-<!-- ═══════════════ SECTION 1: KPIs ═══════════════ -->
+<!-- SECTION 1: KPIs -->
 <section class="section">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-num">01</div>
       <h2 class="section-title">Resumen <em>General</em></h2>
     </div>
-
     <div class="kpi-grid fade-in">
       <div class="kpi-card">
         <div class="kpi-label">Inversión total</div>
         <div class="kpi-value">$2.37M</div>
-        <div class="kpi-sub">↑ 11 campañas activas</div>
+        <div class="kpi-sub">11 campañas activas</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Impresiones</div>
+        <div class="kpi-label">Impresiones totales</div>
         <div class="kpi-value">1.85M</div>
-        <div class="kpi-sub">↑ todas las campañas</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Clics totales</div>
-        <div class="kpi-value">55,870</div>
-        <div class="kpi-sub">CTR promedio 3.0%</div>
+        <div class="kpi-sub">10 países alcanzados</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Leads generados</div>
         <div class="kpi-value">1,647</div>
-        <div class="kpi-sub">↑ campañas de leads</div>
-      </div>
-    </div>
-
-    <div class="kpi-grid fade-in">
-      <div class="kpi-card">
-        <div class="kpi-label">Países alcanzados</div>
-        <div class="kpi-value">10</div>
-        <div class="kpi-sub">4 continentes</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Mejor CPC</div>
-        <div class="kpi-value">$9.19</div>
-        <div class="kpi-sub">India · Leads</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Mejor CTR</div>
-        <div class="kpi-value">6.2%</div>
-        <div class="kpi-sub">EE.UU. · Leads</div>
+        <div class="kpi-sub">campañas de leads</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Mensajes iniciados</div>
@@ -583,13 +183,33 @@
         <div class="kpi-sub">campañas de interacción</div>
       </div>
     </div>
-
-    <!-- Chart: Inversión por campaña -->
+    <div class="kpi-grid fade-in">
+      <div class="kpi-card">
+        <div class="kpi-label">Mejor CPL</div>
+        <div class="kpi-value">$609</div>
+        <div class="kpi-sub good">India · 413 leads</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mejor CTR enlace</div>
+        <div class="kpi-value">3.06%</div>
+        <div class="kpi-sub good">Brasil · Leads</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CPL más alto</div>
+        <div class="kpi-value">$6,225</div>
+        <div class="kpi-sub bad">Alemania · revisar</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mejor costo/mensaje</div>
+        <div class="kpi-value">$323</div>
+        <div class="kpi-sub good">Chile · interacción</div>
+      </div>
+    </div>
     <div class="chart-grid-2 fade-in">
       <div class="chart-card">
         <div class="chart-title">Inversión por campaña</div>
         <div style="position:relative;height:300px;">
-          <canvas id="chartCampSpend" role="img" aria-label="Gráfico de inversión por campaña">Datos de inversión por campaña.</canvas>
+          <canvas id="chartCampSpend" role="img" aria-label="Inversión por campaña">Inversión por campaña.</canvas>
         </div>
       </div>
       <div class="chart-card">
@@ -602,14 +222,13 @@
   </div>
 </section>
 
-<!-- ═══════════════ SECTION 2: PAÍSES ═══════════════ -->
+<!-- SECTION 2: PAÍSES -->
 <section class="section">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-num">02</div>
       <h2 class="section-title">Rendimiento <em>por País</em></h2>
     </div>
-
     <div class="chart-grid-3 fade-in">
       <div class="chart-card">
         <div class="chart-title">Inversión vs leads / mensajes por país</div>
@@ -618,329 +237,201 @@
         </div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">CTR por mercado</div>
+        <div class="chart-title">CPL por mercado (leads)</div>
         <div style="position:relative;height:320px;">
-          <canvas id="chartCTR" role="img" aria-label="CTR por mercado">CTR por mercado.</canvas>
+          <canvas id="chartCPL" role="img" aria-label="CPL por mercado">CPL por mercado.</canvas>
         </div>
       </div>
     </div>
 
-    <div class="chart-card fade-in" style="margin-bottom:24px;">
-      <div class="chart-title">Tabla comparativa por país</div>
+    <!-- Tabla campañas de LEADS -->
+    <div class="chart-card mb fade-in">
+      <div class="chart-title">Campañas de leads — costo por lead</div>
       <table class="data-table">
-        <thead>
-          <tr>
-            <th>País</th>
-            <th>Tipo</th>
-            <th>Inversión</th>
-            <th>Impresiones</th>
-            <th>Clics</th>
-            <th>CTR</th>
-            <th>CPC</th>
-            <th>Conversiones</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th>País</th><th>Inversión</th><th>Clics enlace</th><th>CTR enlace</th><th>Leads</th><th>CPL</th><th>Evaluación</th>
+        </tr></thead>
         <tbody>
-          <tr>
-            <td>🇮🇳 India</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$251,438</td>
-            <td>819,968</td>
-            <td>27,362</td>
-            <td class="val-good">3.3%</td>
-            <td class="val-good">$9.19</td>
-            <td>413 leads</td>
-          </tr>
-          <tr>
-            <td>🇧🇷 Brasil</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$417,480</td>
-            <td>120,885</td>
-            <td>2,196</td>
-            <td class="val-warn">1.8%</td>
-            <td class="val-warn">$190.1</td>
-            <td>304 leads + 115 msgs</td>
-          </tr>
-          <tr>
-            <td>🇫🇷 Francia</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$224,265</td>
-            <td>37,759</td>
-            <td>1,924</td>
-            <td class="val-good">5.1%</td>
-            <td class="val-warn">$116.6</td>
-            <td>106 leads</td>
-          </tr>
-          <tr>
-            <td>🇨🇦 Canadá</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$224,873</td>
-            <td>28,222</td>
-            <td>1,103</td>
-            <td class="val-warn">3.9%</td>
-            <td class="val-warn">$203.9</td>
-            <td>73 leads</td>
-          </tr>
-          <tr>
-            <td>🇬🇧 Reino Unido</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$224,597</td>
-            <td>21,456</td>
-            <td>910</td>
-            <td class="val-warn">4.2%</td>
-            <td class="val-bad">$246.8</td>
-            <td>55 leads</td>
-          </tr>
-          <tr>
-            <td>🇩🇪 Alemania</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$224,102</td>
-            <td>17,392</td>
-            <td>564</td>
-            <td class="val-warn">3.2%</td>
-            <td class="val-bad">$397.3</td>
-            <td>36 leads</td>
-          </tr>
-          <tr>
-            <td>🇺🇸 EE.UU.</td>
-            <td><span class="badge badge-lead">Leads</span></td>
-            <td>$239,916</td>
-            <td>15,097</td>
-            <td>914</td>
-            <td class="val-good">6.1%</td>
-            <td class="val-bad">$262.5</td>
-            <td>65 leads</td>
-          </tr>
-          <tr>
-            <td>🇦🇷 Argentina</td>
-            <td><span class="badge badge-int">Interacción</span></td>
-            <td>$277,518</td>
-            <td>142,937</td>
-            <td>5,049</td>
-            <td class="val-good">3.5%</td>
-            <td class="val-good">$54.9</td>
-            <td>613 mensajes</td>
-          </tr>
-          <tr>
-            <td>🇨🇱 Chile</td>
-            <td><span class="badge badge-int">Interacción</span></td>
-            <td>$71,150</td>
-            <td>53,808</td>
-            <td>1,662</td>
-            <td class="val-warn">3.1%</td>
-            <td class="val-good">$42.8</td>
-            <td>235 mensajes</td>
-          </tr>
-          <tr>
-            <td>🇺🇾 Uruguay</td>
-            <td><span class="badge badge-int">Interacción</span></td>
-            <td>$9,677</td>
-            <td>3,561</td>
-            <td>143</td>
-            <td class="val-warn">4.0%</td>
-            <td class="val-good">$67.7</td>
-            <td>13 mensajes</td>
-          </tr>
+          <tr><td>🇮🇳 India</td><td>$251,438</td><td>22,475</td><td class="val-good">2.74%</td><td>413</td><td class="val-good">$609</td><td class="val-good">Mejor CPL</td></tr>
+          <tr><td>🇧🇷 Brasil</td><td>$238,944</td><td>2,046</td><td class="val-good">3.06%</td><td>304</td><td class="val-good">$786</td><td class="val-good">Buen CTR</td></tr>
+          <tr><td>🇫🇷 Francia</td><td>$224,265</td><td>806</td><td class="val-warn">2.13%</td><td>106</td><td class="val-warn">$2,116</td><td class="val-warn">Razonable</td></tr>
+          <tr><td>🇨🇦 Canadá</td><td>$224,873</td><td>389</td><td class="val-warn">1.38%</td><td>73</td><td class="val-warn">$3,080</td><td class="val-warn">Alto</td></tr>
+          <tr><td>🇺🇸 EE.UU.</td><td>$239,916</td><td>347</td><td class="val-warn">2.30%</td><td>65</td><td class="val-warn">$3,691</td><td class="val-warn">Alto</td></tr>
+          <tr><td>🇬🇧 Reino Unido</td><td>$224,597</td><td>287</td><td class="val-warn">1.34%</td><td>55</td><td class="val-bad">$4,084</td><td class="val-bad">Muy alto</td></tr>
+          <tr><td>🇩🇪 Alemania</td><td>$224,102</td><td>264</td><td class="val-warn">1.52%</td><td>36</td><td class="val-bad">$6,225</td><td class="val-bad">Revisar urgente</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tabla campañas de INTERACCIÓN -->
+    <div class="chart-card fade-in">
+      <div class="chart-title">Campañas de interacción — costo por mensaje iniciado</div>
+      <table class="data-table">
+        <thead><tr>
+          <th>País</th><th>Campaña</th><th>Inversión</th><th>Clics enlace</th><th>CTR enlace</th><th>Msgs iniciados</th><th>Costo / Msg</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>🇨🇱 Chile</td><td>Paso de los Andes / Español</td><td>$71,150</td><td>382</td><td class="val-good">0.71%</td><td>220</td><td class="val-good">$323</td></tr>
+          <tr><td>🇦🇷 Argentina</td><td>Paso de los Andes / Español</td><td>$108,254</td><td>496</td><td class="val-good">0.71%</td><td>302</td><td class="val-good">$358</td></tr>
+          <tr><td>🇺🇾 Uruguay</td><td>Trekking</td><td>$9,677</td><td>20</td><td class="val-warn">0.56%</td><td>11</td><td class="val-warn">$880</td></tr>
+          <tr><td>🇦🇷 Argentina</td><td>Trekking</td><td>$169,264</td><td>486</td><td class="val-warn">0.66%</td><td>241</td><td class="val-warn">$702</td></tr>
+          <tr><td>🇧🇷 Brasil</td><td>Paso de los Andes / Portugués</td><td>$179,137</td><td>274</td><td class="val-bad">0.50%</td><td>107</td><td class="val-bad">$1,674</td></tr>
+          <tr><td>🇧🇷 Brasil</td><td>Trekking</td><td>$178,544</td><td>229</td><td class="val-bad">0.44%</td><td>102</td><td class="val-bad">$1,750</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ SECTION 3: CREATIVOS ═══════════════ -->
+<!-- SECTION 3: CREATIVOS -->
 <section class="section">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-num">03</div>
       <h2 class="section-title">Análisis de <em>Creativos</em></h2>
     </div>
-
     <div class="chart-grid-2 fade-in">
       <div class="chart-card">
-        <div class="chart-title">CTR por creativo</div>
+        <div class="chart-title">CTR de enlace por creativo</div>
         <div style="position:relative;height:280px;">
           <canvas id="chartCreativeCTR" role="img" aria-label="CTR por creativo">CTR por creativo.</canvas>
         </div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">Leads / mensajes por creativo</div>
+        <div class="chart-title">CPL por creativo (campañas leads)</div>
         <div style="position:relative;height:280px;">
-          <canvas id="chartCreativeConv" role="img" aria-label="Conversiones por creativo">Conversiones por creativo.</canvas>
+          <canvas id="chartCreativeCPL" role="img" aria-label="CPL por creativo">CPL por creativo.</canvas>
         </div>
       </div>
     </div>
 
     <div class="chart-card fade-in">
-      <div class="chart-title">Comparativa de creativos</div>
+      <div class="chart-title">Comparativa de creativos — campañas de leads</div>
       <div class="creative-row header">
-        <div>Creativo</div>
-        <div>Inversión</div>
-        <div>CTR</div>
-        <div>CPC</div>
-        <div>Leads/Msgs</div>
-        <div>Eficiencia</div>
+        <div>Creativo</div><div>Inversión</div><div>Clics enlace</div><div>CTR enlace</div><div>Leads / CPL</div><div>Eficiencia</div>
       </div>
-
       <div class="creative-row">
-        <div>
-          <div class="creative-name">AD 3 / Imagen</div>
-          <div class="creative-format">Imagen estática</div>
-        </div>
-        <div>$1.17M</div>
-        <div class="val-warn">1.9%</div>
-        <div class="val-good">$61.3</div>
-        <div class="val-good">842 leads</div>
-        <div>
-          <div>Alta</div>
-          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:100%"></div></div>
-        </div>
+        <div><div class="creative-name">AD 3 / Imagen — India</div><div class="creative-format">Imagen · India x2</div></div>
+        <div>$235,743</div><div>22,404</div><div class="val-good">2.74%</div>
+        <div class="val-good">405 leads · <b style="color:#5ddb8a">$582</b></div>
+        <div><div class="val-good">Mejor CPL</div><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:100%;background:#5ddb8a"></div></div></div>
       </div>
-
       <div class="creative-row">
-        <div>
-          <div class="creative-name">AD 2 / Reel Español</div>
-          <div class="creative-format">Video Reel</div>
-        </div>
-        <div>$178,944</div>
-        <div class="val-good">4.1%</div>
-        <div class="val-good">$56.9</div>
-        <div>285 msgs</div>
-        <div>
-          <div>Muy Alta</div>
-          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:85%;background:#5ddb8a"></div></div>
-        </div>
+        <div><div class="creative-name">AD 3 / Imagen — Brasil</div><div class="creative-format">Imagen · Brasil</div></div>
+        <div>$108,584</div><div>815</div><div class="val-good">4.57%</div>
+        <div class="val-good">145 leads · <b style="color:#5ddb8a">$749</b></div>
+        <div><div class="val-good">Mejor CTR enlace</div><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:90%;background:#5ddb8a"></div></div></div>
       </div>
-
       <div class="creative-row">
-        <div>
-          <div class="creative-name">AD 1 / Reel Español</div>
-          <div class="creative-format">Video Reel</div>
-        </div>
-        <div>$179,404</div>
-        <div class="val-warn">3.0%</div>
-        <div class="val-good">$48.4</div>
-        <div>576 msgs</div>
-        <div>
-          <div>Alta</div>
-          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:75%;background:#5ddb8a"></div></div>
-        </div>
+        <div><div class="creative-name">AD 3 / Imagen — Francia</div><div class="creative-format">Imagen · Francia</div></div>
+        <div>$112,944</div><div>1,166</div><div class="val-good">3.09%</div>
+        <div class="val-warn">139 leads · $813</div>
+        <div><div>Alta</div><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:78%"></div></div></div>
       </div>
-
       <div class="creative-row">
-        <div>
-          <div class="creative-name">AD 2 / Reel Portugués</div>
-          <div class="creative-format">Video Reel</div>
-        </div>
-        <div>$178,315</div>
-        <div class="val-warn">2.5%</div>
-        <div class="val-bad">$137.6</div>
-        <div>115 msgs</div>
-        <div>
-          <div>Media</div>
-          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:45%;background:#e8c96a"></div></div>
-        </div>
+        <div><div class="creative-name">AD 1 / Aconcagua Nuevo</div><div class="creative-format">Video · varios mercados</div></div>
+        <div>$8,056</div><div>31</div><div class="val-good">2.2%</div>
+        <div class="val-good">9 leads · <b style="color:#5ddb8a">$895</b></div>
+        <div><div class="val-good">Promisorio · escalar</div><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:65%;background:#5ddb8a"></div></div></div>
       </div>
-
       <div class="creative-row">
-        <div>
-          <div class="creative-name">AD 1 / Reel Portugués</div>
-          <div class="creative-format">Video Reel</div>
-        </div>
-        <div>$179,137</div>
-        <div class="val-bad">1.6%</div>
-        <div class="val-bad">$199.3</div>
-        <div>115 msgs</div>
-        <div>
-          <div>Baja</div>
-          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%;background:#e06060"></div></div>
-        </div>
+        <div><div class="creative-name">AD 2 / Aconcagua Viejo</div><div class="creative-format">Video · varios mercados</div></div>
+        <div>$121,601</div><div>271</div><td class="val-warn">1.4%</td>
+        <div class="val-warn">50 leads · $2,432</div>
+        <div><div class="val-warn">Media</div><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:40%;background:#e8c96a"></div></div></div>
       </div>
-
       <div class="creative-row">
-        <div>
-          <div class="creative-name">AD 1 / Aconcagua Nuevo</div>
-          <div class="creative-format">Video</div>
-        </div>
-        <div>$8,056</div>
-        <div class="val-good">5.4%</div>
-        <div class="val-good">$103.3</div>
-        <div>7 leads</div>
-        <div>
-          <div>Promisorio</div>
-          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:60%;background:#5ddb8a"></div></div>
-        </div>
+        <div><div class="creative-name">AD 3 / Imagen — Alemania</div><div class="creative-format">Imagen · Alemania</div></div>
+        <div>$186,078</div><div>214</div><div class="val-bad">1.47%</div>
+        <div class="val-bad">27 leads · <b style="color:#e06060">$6,892</b></div>
+        <div><div class="val-bad">CPL más alto</div><div class="mini-bar-bg"><div class="mini-bar-fill" style="width:15%;background:#e06060"></div></div></div>
+      </div>
+    </div>
+
+    <div class="chart-card fade-in" style="margin-top:24px;">
+      <div class="chart-title">Comparativa de creativos — campañas de interacción</div>
+      <div class="creative-row header">
+        <div>Creativo</div><div>Inversión</div><div>Clics enlace</div><div>CTR enlace</div><div>Msgs iniciados</div><div>Costo / Msg</div>
+      </div>
+      <div class="creative-row">
+        <div><div class="creative-name">AD 1 / Reel Español</div><div class="creative-format">Reel · AR + CL</div></div>
+        <div>$179,404</div><div>878</div><div class="val-warn">0.71%</div><div>522</div><div class="val-good">$344</div>
+      </div>
+      <div class="creative-row">
+        <div><div class="creative-name">AD 2 / Reel Español</div><div class="creative-format">Reel · AR + UY</div></div>
+        <div>$178,944</div><div>506</div><div class="val-warn">0.66%</div><div>252</div><div class="val-warn">$710</div>
+      </div>
+      <div class="creative-row">
+        <div><div class="creative-name">AD 1 / Reel Portugués</div><div class="creative-format">Reel · BR</div></div>
+        <div>$179,137</div><div>274</div><div class="val-bad">0.50%</div><div>107</div><div class="val-bad">$1,674</div>
+      </div>
+      <div class="creative-row">
+        <div><div class="creative-name">AD 2 / Reel Portugués</div><div class="creative-format">Reel · BR</div></div>
+        <div>$178,315</div><div>229</div><div class="val-bad">0.44%</div><div>102</div><div class="val-bad">$1,748</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ SECTION 4: CONCLUSIONES ═══════════════ -->
+<!-- SECTION 4: CONCLUSIONES -->
 <section class="section">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-num">04</div>
       <h2 class="section-title">Conclusiones <em>Estratégicas</em></h2>
     </div>
-
     <div class="conclusions fade-in">
       <div class="conclusions-title">Hallazgos clave</div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">01</div>
         <div class="conclusion-text">
           <strong>India: el mercado de mayor eficiencia</strong>
-          <p>Con un <b>CPC de $9.19</b> y <b>820K impresiones</b>, India es el mercado más eficiente de la cuenta. Generó <b>413 leads</b> con una inversión razonable. Se recomienda escalar el presupuesto y testear nuevos creativos adaptados culturalmente para maximizar el volumen de leads a bajo costo.</p>
+          <p>Con un <b>CPL de $609</b> y <b>820K impresiones</b>, India es el mercado más eficiente. Generó <b>413 leads</b> con el CTR de enlace más alto entre mercados de gran escala. Se recomienda escalar el presupuesto y testear nuevos creativos adaptados culturalmente para maximizar el volumen de leads a bajo costo.</p>
         </div>
       </div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">02</div>
         <div class="conclusion-text">
-          <strong>Alemania: mercado con bajo retorno — revisar urgente</strong>
-          <p>Alemania presenta el <b>CPC más alto de todos los mercados ($397.3)</b> con solo <b>36 leads generados</b> y un CTR de 3.2%. Invertir $224K para este volumen de conversiones no es sostenible. Se recomienda revisar la segmentación de audiencia, los creativos utilizados y evaluar reducir la inversión o pausa temporal.</p>
+          <strong>Alemania: peor retorno de la cuenta — revisar urgente</strong>
+          <p>Alemania tiene el <b>CPL más alto ($6,225)</b> con solo <b>36 leads</b> y CTR de enlace del 1.52%. Invertir $224K para este resultado no es sostenible. Se recomienda revisar segmentación, creativos y evaluar reducir o pausar la inversión temporalmente mientras se testea una nueva estrategia.</p>
         </div>
       </div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">03</div>
         <div class="conclusion-text">
           <strong>Francia: el mejor equilibrio en Europa</strong>
-          <p>Con un <b>CTR del 5.1%</b> y <b>106 leads</b>, Francia es el mercado europeo con mejor rendimiento. El CPC de <b>$116.6</b> lo posiciona como viable para escalar. Es el mercado europeo con mayor potencial de crecimiento en la actualidad.</p>
+          <p>Con un <b>CTR de enlace del 2.13%</b> y <b>106 leads a $2,116 cada uno</b>, Francia lidera en Europa. El CTR de enlace es el más alto del continente. Es el mercado europeo con mayor potencial de optimización y crecimiento.</p>
         </div>
       </div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">04</div>
         <div class="conclusion-text">
-          <strong>AD 1 / Reel Portugués: creativo a reemplazar</strong>
-          <p>Con el <b>CTR más bajo (1.6%)</b> y un <b>CPC de $199.3</b>, el Reel en portugués para Brasil está bajo-rendimiento a pesar de una inversión de $179K. Se recomienda crear y testear un nuevo creativo en portugués, posiblemente adaptando el formato o el mensaje al mercado brasileño.</p>
+          <strong>Reels en portugués: creativos a renovar</strong>
+          <p>Tanto el AD 1 como el AD 2 en portugués tienen el <b>CTR de enlace más bajo (0.44%–0.50%)</b> y costos por mensaje de <b>$1,674–$1,748</b>, con $357K de inversión combinada. Se recomienda crear y testear nuevos creativos en portugués con mensajes y formatos renovados para el mercado brasileño.</p>
         </div>
       </div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">05</div>
         <div class="conclusion-text">
           <strong>AD 1 / Aconcagua Nuevo: creativo a escalar</strong>
-          <p>A pesar de un presupuesto mínimo ($8K), este creativo muestra el <b>CTR más alto de todos los creativos (5.4%)</b>. Con tan poco gasto, los resultados son prometedores. Se recomienda aumentar progresivamente el presupuesto y ampliar su distribución a más mercados para validar su potencial a mayor escala.</p>
+          <p>Con solo $8K de presupuesto, este creativo genera leads a <b>$895</b> — muy por debajo del Aconcagua Viejo ($2,432). Su CTR de enlace (2.2%) y CPL prometedor justifican aumentar progresivamente la inversión para validar su potencial a mayor escala.</p>
         </div>
       </div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">06</div>
         <div class="conclusion-text">
-          <strong>Argentina y Chile: sólidas para interacción y mensajería</strong>
-          <p>Las campañas de interacción en Argentina (<b>613 mensajes</b>, CPC $54.9) y Chile (<b>235 mensajes</b>, CPC $42.8) muestran buenos resultados de engagement a costos bajos. La frecuencia controlada (~1.6x) indica que el agotamiento de audiencia no es un problema aún. Mantener y monitorear.</p>
+          <strong>Chile: mejor costo por mensaje del portfolio</strong>
+          <p>Chile logra el <b>costo por mensaje más bajo ($323)</b>, por debajo de Argentina ($358). A pesar de menor presupuesto ($71K vs $277K en Argentina), su eficiencia es superior. Representa una oportunidad para escalar las campañas de interacción en el mercado chileno.</p>
         </div>
       </div>
-
       <div class="conclusion-item">
         <div class="conclusion-num">07</div>
         <div class="conclusion-text">
           <strong>Acciones prioritarias recomendadas</strong>
           <p>
-            <b>↑ Escalar:</b> India + Francia + Aconcagua Nuevo creativo.<br>
-            <b>↔ Mantener:</b> EE.UU., Canadá, Argentina, Chile, Reels en español.<br>
-            <b>↓ Optimizar:</b> Alemania (revisar segmentación), Brasil (nuevo creativo en PT), AD 1 Reel Portugués (pausar o reemplazar).
+            <b>↑ Escalar:</b> India (AD 3 Imagen), Francia, AD 1 Aconcagua Nuevo, Chile (interacción).<br>
+            <b>↔ Mantener:</b> EE.UU., Canadá, Argentina, AD 1 Reel Español.<br>
+            <b>↓ Optimizar/Pausar:</b> Alemania (revisar segmentación), Reels en portugués (crear nuevos creativos), AD 2 Aconcagua Viejo (reemplazar progresivamente).
           </p>
         </div>
       </div>
@@ -948,172 +439,37 @@
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    AMG · Adventure Marketing Group · Informe generado con datos de Facebook Ads vía Windsor.ai · Abril 2026
+    Aconcagua Mountain Guides · Informe generado con datos de Facebook Ads vía Windsor.ai · Abril 2026
   </div>
 </footer>
 
 <script>
-// ── Colors ──
-const C = {
-  accent: '#4a9eda',
-  accent2: '#6dbfff',
-  gold: '#c9a84c',
-  muted: 'rgba(122,154,181,0.5)',
-  white: '#f0f4f8',
-  grid: 'rgba(74,158,218,0.1)',
-  green: '#5ddb8a',
-  red: '#e06060',
-};
+const C = { accent:'#4a9eda', accent2:'#6dbfff', gold:'#c9a84c', muted:'rgba(122,154,181,0.5)', white:'#f0f4f8', grid:'rgba(74,158,218,0.1)', green:'#5ddb8a', red:'#e06060' };
+const baseOpts = { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:11},maxRotation:35},grid:{color:C.grid},border:{color:'transparent'}}, y:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:11}},grid:{color:C.grid},border:{color:'transparent'}} } };
 
-const baseOpts = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: { legend: { display: false } },
-  scales: {
-    x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, maxRotation: 35 }, grid: { color: C.grid }, border: { color: 'transparent' } },
-    y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 } }, grid: { color: C.grid }, border: { color: 'transparent' } }
-  }
-};
+// 1. Inversión por campaña
+new Chart(document.getElementById('chartCampSpend'), { type:'bar', data:{ labels:['Interacción/Trekking','Leads/India','Leads/Brasil','Leads/Canadá','Leads/UK','Leads/Alemania','Leads/Francia','Leads/EE.UU.','Int/PdA Español','Int/PdA Portugués','Leads/PdA Inglés'], datasets:[{ data:[357484,251438,238944,224873,224597,224102,224265,222299,179404,179137,17617], backgroundColor:[C.gold,C.accent,C.accent,C.accent,C.accent,C.red,C.green,C.accent,C.gold,C.gold,C.muted], borderWidth:0, borderRadius:2 }] }, options:{...baseOpts, indexAxis:'y', scales:{ x:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},callback:v=>'$'+Math.round(v/1000)+'K'},grid:{color:C.grid},border:{color:'transparent'}}, y:{ticks:{color:'#a0bfd4',font:{family:'Barlow Condensed',size:11}},grid:{display:false},border:{color:'transparent'}} }} });
 
-// 1. Inversión por campaña (horizontal bar)
-new Chart(document.getElementById('chartCampSpend'), {
-  type: 'bar',
-  data: {
-    labels: ['Interacción/Trekking','Leads/India','Leads/Brasil','Leads/Canada','Leads/UK','Leads/Alemania','Leads/Francia','Leads/EE.UU.','Int/PdA Español','Int/PdA Portugués','Leads/PdA Inglés'],
-    datasets: [{
-      data: [357484,251438,238944,224873,224597,224102,224265,222299,179404,179137,17617],
-      backgroundColor: [C.gold,C.accent,C.accent,C.accent,C.accent,C.red,C.green,C.accent,C.gold,C.gold,C.muted],
-      borderWidth: 0,
-      borderRadius: 2,
-    }]
-  },
-  options: { ...baseOpts, indexAxis: 'y',
-    scales: {
-      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => '$' + Math.round(v/1000) + 'K' }, grid: { color: C.grid }, border: { color: 'transparent' } },
-      y: { ticks: { color: '#a0bfd4', font: { family: 'Barlow Condensed', size: 11 } }, grid: { display: false }, border: { color: 'transparent' } }
-    }
-  }
-});
+// 2. Donut objetivo
+new Chart(document.getElementById('chartObjective'), { type:'doughnut', data:{ labels:['Leads (int\'l)','Interacción LATAM','Leads PdA'], datasets:[{ data:[1890180,358345,17617], backgroundColor:[C.accent,C.gold,C.muted], borderWidth:0, hoverOffset:8 }] }, options:{ responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{ legend:{ display:true, position:'bottom', labels:{color:C.muted,font:{family:'Barlow Condensed',size:11},padding:16,boxWidth:10,boxHeight:10} } } } });
 
-// 2. Distribución por objetivo (donut)
-new Chart(document.getElementById('chartObjective'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Leads (int\'l)','Interacción LATAM','Leads PdA'],
-    datasets: [{
-      data: [1890180, 358345, 17617],
-      backgroundColor: [C.accent, C.gold, C.muted],
-      borderWidth: 0,
-      hoverOffset: 8,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    cutout: '65%',
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, padding: 16, boxWidth: 10, boxHeight: 10 }
-      }
-    }
-  }
-});
+// 3. Country grouped bar
+new Chart(document.getElementById('chartCountry'), { type:'bar', data:{ labels:['India','Brasil','Francia','Canadá','UK','Alemania','EE.UU.','Argentina','Chile','Uruguay'], datasets:[ { label:'Inversión ($K)', data:[251,239,224,225,225,224,240,278,71,10], backgroundColor:C.accent, borderWidth:0, borderRadius:2 }, { label:'Leads/Msgs', data:[413,304,106,73,55,36,65,613,235,13], backgroundColor:C.gold, borderWidth:0, borderRadius:2, yAxisID:'y2' } ] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:true, position:'top', labels:{color:C.muted,font:{family:'Barlow Condensed',size:11},boxWidth:10,boxHeight:10} } }, scales:{ x:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:11},maxRotation:35},grid:{color:C.grid},border:{color:'transparent'}}, y:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},callback:v=>'$'+v+'K'},grid:{color:C.grid},border:{color:'transparent'}}, y2:{position:'right',ticks:{color:C.gold,font:{family:'Barlow Condensed',size:10}},grid:{display:false},border:{color:'transparent'}} } } });
 
-// 3. Country: grouped bar (inversión + conversiones)
-new Chart(document.getElementById('chartCountry'), {
-  type: 'bar',
-  data: {
-    labels: ['India','Brasil','Francia','Canadá','UK','Alemania','EE.UU.','Argentina','Chile','Uruguay'],
-    datasets: [
-      { label: 'Inversión ($K)', data: [251,417,224,225,225,224,240,278,71,10], backgroundColor: C.accent, borderWidth: 0, borderRadius: 2 },
-      { label: 'Conversiones', data: [413,419,106,73,55,36,65,613,235,13], backgroundColor: C.gold, borderWidth: 0, borderRadius: 2, yAxisID: 'y2' }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true, position: 'top',
-        labels: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, boxWidth: 10, boxHeight: 10 }
-      }
-    },
-    scales: {
-      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, maxRotation: 35 }, grid: { color: C.grid }, border: { color: 'transparent' } },
-      y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => '$' + v + 'K' }, grid: { color: C.grid }, border: { color: 'transparent' } },
-      y2: { position: 'right', ticks: { color: C.gold, font: { family: 'Barlow Condensed', size: 10 } }, grid: { display: false }, border: { color: 'transparent' } }
-    }
-  }
-});
+// 4. CPL por mercado (solo leads, ordenado mejor a peor)
+new Chart(document.getElementById('chartCPL'), { type:'bar', data:{ labels:['India','Brasil','Francia','Canadá','EE.UU.','UK','Alemania'], datasets:[{ data:[609,786,2116,3080,3691,4084,6225], backgroundColor:[C.green,C.green,'#a0bfd4','#a0bfd4',C.gold,C.red,C.red], borderWidth:0, borderRadius:2 }] }, options:{...baseOpts, indexAxis:'y', scales:{ x:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},callback:v=>'$'+v.toLocaleString()},grid:{color:C.grid},border:{color:'transparent'}}, y:{ticks:{color:'#a0bfd4',font:{family:'Barlow Condensed',size:11}},grid:{display:false},border:{color:'transparent'}} }} });
 
-// 4. CTR radar / horizontal bar
-new Chart(document.getElementById('chartCTR'), {
-  type: 'bar',
-  data: {
-    labels: ['EE.UU.','Francia','Uruguay','UK','Canadá','Argentina','India','Chile','Alemania','Brasil'],
-    datasets: [{
-      data: [6.2, 5.1, 4.0, 4.2, 3.9, 3.5, 3.3, 3.1, 3.2, 1.8],
-      backgroundColor: [C.green,C.green,C.accent,C.accent,C.accent,C.accent,C.accent,C.gold,C.gold,C.red],
-      borderWidth: 0, borderRadius: 2
-    }]
-  },
-  options: { ...baseOpts, indexAxis: 'y',
-    scales: {
-      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => v + '%' }, grid: { color: C.grid }, border: { color: 'transparent' } },
-      y: { ticks: { color: '#a0bfd4', font: { family: 'Barlow Condensed', size: 11 } }, grid: { display: false }, border: { color: 'transparent' } }
-    }
-  }
-});
+// 5. CTR enlace por creativo
+new Chart(document.getElementById('chartCreativeCTR'), { type:'bar', data:{ labels:['AD3 Imagen\nBrasil','AD3 Imagen\nFrancia','AD3 Imagen\nIndia','AD1 Aconcagua\nNuevo','AD1 Reel\nEspañol','AD2 Reel\nEspañol','AD2 Reel\nPortugués','AD1 Reel\nPortugués'], datasets:[{ data:[4.57,3.09,2.74,2.2,0.71,0.66,0.50,0.44], backgroundColor:[C.green,C.green,C.green,C.green,C.accent,C.accent,C.red,C.red], borderWidth:0, borderRadius:2 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},maxRotation:40},grid:{color:C.grid},border:{color:'transparent'}}, y:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},callback:v=>v+'%'},grid:{color:C.grid},border:{color:'transparent'}} } } });
 
-// 5. Creative CTR
-new Chart(document.getElementById('chartCreativeCTR'), {
-  type: 'bar',
-  data: {
-    labels: ['Aconcagua\nNuevo','AD2 Reel\nEspañol','AD1 Reel\nInglés','AD1 Reel\nEspañol','AD2 Aconcagua\nViejo','AD2 Reel\nPortugués','AD3\nImagen','AD1 Reel\nPortugués'],
-    datasets: [{
-      data: [5.4, 4.1, 3.8, 3.0, 2.9, 2.5, 1.9, 1.6],
-      backgroundColor: [C.green,C.green,C.accent,C.accent,C.accent,C.gold,C.gold,C.red],
-      borderWidth: 0, borderRadius: 2
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, maxRotation: 40 }, grid: { color: C.grid }, border: { color: 'transparent' } },
-      y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => v + '%' }, grid: { color: C.grid }, border: { color: 'transparent' } }
-    }
-  }
-});
+// 6. CPL por creativo
+new Chart(document.getElementById('chartCreativeCPL'), { type:'bar', data:{ labels:['AD3 India\n(x2)','AD3 Brasil','AD3 Francia','AD1 Aconcagua\nNuevo','AD2 Aconcagua\nViejo','AD3 Alemania'], datasets:[{ data:[582,749,813,895,2432,6892], backgroundColor:[C.green,C.green,C.green,C.accent,C.gold,C.red], borderWidth:0, borderRadius:2 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},maxRotation:40},grid:{color:C.grid},border:{color:'transparent'}}, y:{ticks:{color:C.muted,font:{family:'Barlow Condensed',size:10},callback:v=>'$'+v.toLocaleString()},grid:{color:C.grid},border:{color:'transparent'}} } } });
 
-// 6. Creative Conversions
-new Chart(document.getElementById('chartCreativeConv'), {
-  type: 'bar',
-  data: {
-    labels: ['AD3\nImagen','AD1 Reel\nEspañol','AD2 Reel\nEspañol','AD2 Reel\nPort.','AD1 Reel\nPort.','AD2\nAconcagua','AD1\nAconcagua'],
-    datasets: [{
-      data: [842, 576, 285, 115, 115, 50, 7],
-      backgroundColor: [C.accent, C.green, C.green, C.gold, C.gold, C.gold, C.muted],
-      borderWidth: 0, borderRadius: 2
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, maxRotation: 40 }, grid: { color: C.grid }, border: { color: 'transparent' } },
-      y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 } }, grid: { color: C.grid }, border: { color: 'transparent' } }
-    }
-  }
-});
-
-// ── Scroll animations ──
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+// Scroll animations
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
