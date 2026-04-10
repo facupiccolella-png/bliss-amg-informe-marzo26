@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMG — Informe de Rendimiento 90 Días</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --navy: #050f1e;
+    --navy2: #0a1a2f;
+    --navy3: #0e2340;
+    --blue: #1a3a5c;
+    --blue2: #1e4976;
+    --accent: #4a9eda;
+    --accent2: #6dbfff;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --white: #f0f4f8;
+    --muted: #7a9ab5;
+    --border: rgba(74,158,218,0.2);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: linear-gradient(180deg, #020810 0%, #050f1e 40%, #0a1a2f 100%);
+  }
+
+  .hero-stars {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 80% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 88% 12%, rgba(200,220,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 42% 22%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  /* SVG mountain range */
+  .hero-mountains {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    width: 100%;
+  }
+
+  .hero-glow {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 200px;
+    background: radial-gradient(ellipse, rgba(74,158,218,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 0 60px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-cond);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    background: rgba(74,158,218,0.06);
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .logo-box {
+    width: 56px; height: 56px;
+    background: var(--blue2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+  }
+  .logo-text {
+    font-family: var(--font-cond);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 8vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .hero-title span {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    font-family: var(--font-cond);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 24px;
+  }
+  .hero-meta strong { color: var(--white); }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 1;
+    color: rgba(74,158,218,0.15);
+    letter-spacing: -2px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .section-title em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 60px;
+  }
+  .kpi-card {
+    background: var(--navy2);
+    padding: 32px 28px;
+    transition: background 0.2s;
+  }
+  .kpi-card:hover { background: var(--navy3); }
+  .kpi-label {
+    font-family: var(--font-cond);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .kpi-value {
+    font-family: var(--font-display);
+    font-size: 48px;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    line-height: 1;
+  }
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 6px;
+    font-family: var(--font-cond);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CHART CARDS ── */
+  .chart-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .chart-grid-3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .chart-card {
+    background: var(--navy2);
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 2px;
+  }
+  .chart-title {
+    font-family: var(--font-cond);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chart-title::before {
+    content: '';
+    width: 3px; height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ── COUNTRY TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-cond);
+  }
+  .data-table th {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(74,158,218,0.08);
+    font-size: 14px;
+    color: var(--white);
+  }
+  .data-table tr:hover td { background: rgba(74,158,218,0.04); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-family: var(--font-cond);
+    font-weight: 600;
+  }
+  .badge-lead { background: rgba(74,158,218,0.15); color: var(--accent2); }
+  .badge-int { background: rgba(201,168,76,0.15); color: var(--gold2); }
+
+  .val-good { color: #5ddb8a; }
+  .val-warn { color: var(--gold2); }
+  .val-bad { color: #e06060; }
+
+  /* ── CREATIVE TABLE ── */
+  .creative-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.2fr;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(74,158,218,0.08);
+    font-family: var(--font-cond);
+    font-size: 14px;
+  }
+  .creative-row.header {
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .creative-name { font-weight: 600; color: var(--white); }
+  .creative-format {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .mini-bar-bg {
+    height: 4px;
+    background: rgba(74,158,218,0.15);
+    border-radius: 2px;
+    margin-top: 4px;
+  }
+  .mini-bar-fill {
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ── CONCLUSIONS ── */
+  .conclusions {
+    background: var(--navy2);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 40px 48px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .conclusions::before {
+    content: '"';
+    position: absolute;
+    top: -20px; right: 30px;
+    font-family: var(--font-display);
+    font-size: 200px;
+    color: rgba(74,158,218,0.04);
+    line-height: 1;
+  }
+  .conclusions-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+  }
+  .conclusion-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(74,158,218,0.1);
+  }
+  .conclusion-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .conclusion-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    color: rgba(74,158,218,0.3);
+    line-height: 1;
+    min-width: 48px;
+  }
+  .conclusion-text { }
+  .conclusion-text strong {
+    display: block;
+    font-family: var(--font-cond);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .conclusion-text p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .conclusion-text p b { color: var(--accent2); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 40px 0;
+    text-align: center;
+    font-family: var(--font-cond);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── DIVIDER ── */
+  .mountain-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin: 0;
+  }
+
+  /* ── ANIMATE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-glow"></div>
+
+  <!-- SVG Mountain Silhouette -->
+  <svg class="hero-mountains" viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+    <defs>
+      <linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dceeff" stop-opacity="0.9"/>
+        <stop offset="40%" stop-color="#6aabdd" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#050f1e" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="midGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a3a5c" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#050f1e" stop-opacity="1"/>
+      </linearGradient>
+      <linearGradient id="foreGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0a1a2f" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#050f1e" stop-opacity="1"/>
+      </linearGradient>
+      <linearGradient id="snowline" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e8f4ff" stop-opacity="1"/>
+        <stop offset="80%" stop-color="#4a9eda" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+      </linearGradient>
+      <!-- Glow on peaks -->
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Background distant range -->
+    <polygon points="0,400 80,300 160,340 240,260 320,300 400,220 480,270 560,190 640,240 720,150 800,200 880,160 960,210 1040,170 1120,220 1200,180 1280,230 1360,190 1440,210 1440,500 0,500" fill="url(#midGrad)" opacity="0.5"/>
+
+    <!-- Main peaks -->
+    <polygon points="0,450 100,380 200,410 300,340 400,380 520,280 600,310 700,230 720,245 740,230 800,280 880,300 960,250 1060,280 1160,300 1260,260 1360,300 1440,340 1440,500 0,500" fill="url(#midGrad)"/>
+
+    <!-- Snow caps on main peaks -->
+    <polygon points="700,230 720,185 740,230 730,228 720,230 710,228" fill="url(#snowline)" filter="url(#glow)"/>
+    <polygon points="520,280 545,248 570,280 556,276" fill="url(#snowline)" filter="url(#glow)"/>
+    <polygon points="960,250 975,225 990,250 980,248" fill="url(#snowline)" filter="url(#glow)"/>
+
+    <!-- Foreground range -->
+    <polygon points="0,480 80,440 160,460 260,420 380,440 460,400 560,430 680,390 780,420 900,380 1020,400 1140,370 1260,400 1360,380 1440,400 1440,500 0,500" fill="url(#foreGrad)"/>
+
+    <!-- Very foreground -->
+    <polygon points="0,500 120,470 240,490 360,465 480,485 600,460 720,480 840,455 960,475 1080,460 1200,475 1320,465 1440,480 1440,500 0,500" fill="#050f1e"/>
+
+    <!-- Subtle horizontal glow line at horizon -->
+    <line x1="0" y1="310" x2="1440" y2="310" stroke="rgba(74,158,218,0.15)" stroke-width="1"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-logo">
+      <div class="logo-box">AMG</div>
+      <div class="logo-text">Adventure Marketing Group<br>Facebook Ads · Cuenta 64639015</div>
+    </div>
+    <div class="hero-badge">Informe de rendimiento · Últimos 90 días</div>
+    <h1 class="hero-title">
+      Rendimiento<br>
+      <span>Campañas</span>
+    </h1>
+    <div class="hero-meta">
+      <div><strong>Período:</strong> Últimos 90 días</div>
+      <div><strong>Fuente:</strong> Facebook Ads / Windsor.ai</div>
+      <div><strong>Cuenta:</strong> 64639015</div>
+      <div><strong>Fecha:</strong> Abril 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 1: KPIs ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">01</div>
+      <h2 class="section-title">Resumen <em>General</em></h2>
+    </div>
+
+    <div class="kpi-grid fade-in">
+      <div class="kpi-card">
+        <div class="kpi-label">Inversión total</div>
+        <div class="kpi-value">$2.37M</div>
+        <div class="kpi-sub">↑ 11 campañas activas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Impresiones</div>
+        <div class="kpi-value">1.85M</div>
+        <div class="kpi-sub">↑ todas las campañas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Clics totales</div>
+        <div class="kpi-value">55,870</div>
+        <div class="kpi-sub">CTR promedio 3.0%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Leads generados</div>
+        <div class="kpi-value">1,647</div>
+        <div class="kpi-sub">↑ campañas de leads</div>
+      </div>
+    </div>
+
+    <div class="kpi-grid fade-in">
+      <div class="kpi-card">
+        <div class="kpi-label">Países alcanzados</div>
+        <div class="kpi-value">10</div>
+        <div class="kpi-sub">4 continentes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mejor CPC</div>
+        <div class="kpi-value">$9.19</div>
+        <div class="kpi-sub">India · Leads</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mejor CTR</div>
+        <div class="kpi-value">6.2%</div>
+        <div class="kpi-sub">EE.UU. · Leads</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Mensajes iniciados</div>
+        <div class="kpi-value">1,524</div>
+        <div class="kpi-sub">campañas de interacción</div>
+      </div>
+    </div>
+
+    <!-- Chart: Inversión por campaña -->
+    <div class="chart-grid-2 fade-in">
+      <div class="chart-card">
+        <div class="chart-title">Inversión por campaña</div>
+        <div style="position:relative;height:300px;">
+          <canvas id="chartCampSpend" role="img" aria-label="Gráfico de inversión por campaña">Datos de inversión por campaña.</canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Distribución por tipo de objetivo</div>
+        <div style="position:relative;height:300px;">
+          <canvas id="chartObjective" role="img" aria-label="Distribución por objetivo">Distribución por tipo de campaña.</canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 2: PAÍSES ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">02</div>
+      <h2 class="section-title">Rendimiento <em>por País</em></h2>
+    </div>
+
+    <div class="chart-grid-3 fade-in">
+      <div class="chart-card">
+        <div class="chart-title">Inversión vs leads / mensajes por país</div>
+        <div style="position:relative;height:320px;">
+          <canvas id="chartCountry" role="img" aria-label="Inversión y conversiones por país">Inversión y conversiones por país.</canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">CTR por mercado</div>
+        <div style="position:relative;height:320px;">
+          <canvas id="chartCTR" role="img" aria-label="CTR por mercado">CTR por mercado.</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card fade-in" style="margin-bottom:24px;">
+      <div class="chart-title">Tabla comparativa por país</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>País</th>
+            <th>Tipo</th>
+            <th>Inversión</th>
+            <th>Impresiones</th>
+            <th>Clics</th>
+            <th>CTR</th>
+            <th>CPC</th>
+            <th>Conversiones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🇮🇳 India</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$251,438</td>
+            <td>819,968</td>
+            <td>27,362</td>
+            <td class="val-good">3.3%</td>
+            <td class="val-good">$9.19</td>
+            <td>413 leads</td>
+          </tr>
+          <tr>
+            <td>🇧🇷 Brasil</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$417,480</td>
+            <td>120,885</td>
+            <td>2,196</td>
+            <td class="val-warn">1.8%</td>
+            <td class="val-warn">$190.1</td>
+            <td>304 leads + 115 msgs</td>
+          </tr>
+          <tr>
+            <td>🇫🇷 Francia</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$224,265</td>
+            <td>37,759</td>
+            <td>1,924</td>
+            <td class="val-good">5.1%</td>
+            <td class="val-warn">$116.6</td>
+            <td>106 leads</td>
+          </tr>
+          <tr>
+            <td>🇨🇦 Canadá</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$224,873</td>
+            <td>28,222</td>
+            <td>1,103</td>
+            <td class="val-warn">3.9%</td>
+            <td class="val-warn">$203.9</td>
+            <td>73 leads</td>
+          </tr>
+          <tr>
+            <td>🇬🇧 Reino Unido</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$224,597</td>
+            <td>21,456</td>
+            <td>910</td>
+            <td class="val-warn">4.2%</td>
+            <td class="val-bad">$246.8</td>
+            <td>55 leads</td>
+          </tr>
+          <tr>
+            <td>🇩🇪 Alemania</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$224,102</td>
+            <td>17,392</td>
+            <td>564</td>
+            <td class="val-warn">3.2%</td>
+            <td class="val-bad">$397.3</td>
+            <td>36 leads</td>
+          </tr>
+          <tr>
+            <td>🇺🇸 EE.UU.</td>
+            <td><span class="badge badge-lead">Leads</span></td>
+            <td>$239,916</td>
+            <td>15,097</td>
+            <td>914</td>
+            <td class="val-good">6.1%</td>
+            <td class="val-bad">$262.5</td>
+            <td>65 leads</td>
+          </tr>
+          <tr>
+            <td>🇦🇷 Argentina</td>
+            <td><span class="badge badge-int">Interacción</span></td>
+            <td>$277,518</td>
+            <td>142,937</td>
+            <td>5,049</td>
+            <td class="val-good">3.5%</td>
+            <td class="val-good">$54.9</td>
+            <td>613 mensajes</td>
+          </tr>
+          <tr>
+            <td>🇨🇱 Chile</td>
+            <td><span class="badge badge-int">Interacción</span></td>
+            <td>$71,150</td>
+            <td>53,808</td>
+            <td>1,662</td>
+            <td class="val-warn">3.1%</td>
+            <td class="val-good">$42.8</td>
+            <td>235 mensajes</td>
+          </tr>
+          <tr>
+            <td>🇺🇾 Uruguay</td>
+            <td><span class="badge badge-int">Interacción</span></td>
+            <td>$9,677</td>
+            <td>3,561</td>
+            <td>143</td>
+            <td class="val-warn">4.0%</td>
+            <td class="val-good">$67.7</td>
+            <td>13 mensajes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 3: CREATIVOS ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">03</div>
+      <h2 class="section-title">Análisis de <em>Creativos</em></h2>
+    </div>
+
+    <div class="chart-grid-2 fade-in">
+      <div class="chart-card">
+        <div class="chart-title">CTR por creativo</div>
+        <div style="position:relative;height:280px;">
+          <canvas id="chartCreativeCTR" role="img" aria-label="CTR por creativo">CTR por creativo.</canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Leads / mensajes por creativo</div>
+        <div style="position:relative;height:280px;">
+          <canvas id="chartCreativeConv" role="img" aria-label="Conversiones por creativo">Conversiones por creativo.</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card fade-in">
+      <div class="chart-title">Comparativa de creativos</div>
+      <div class="creative-row header">
+        <div>Creativo</div>
+        <div>Inversión</div>
+        <div>CTR</div>
+        <div>CPC</div>
+        <div>Leads/Msgs</div>
+        <div>Eficiencia</div>
+      </div>
+
+      <div class="creative-row">
+        <div>
+          <div class="creative-name">AD 3 / Imagen</div>
+          <div class="creative-format">Imagen estática</div>
+        </div>
+        <div>$1.17M</div>
+        <div class="val-warn">1.9%</div>
+        <div class="val-good">$61.3</div>
+        <div class="val-good">842 leads</div>
+        <div>
+          <div>Alta</div>
+          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <div class="creative-row">
+        <div>
+          <div class="creative-name">AD 2 / Reel Español</div>
+          <div class="creative-format">Video Reel</div>
+        </div>
+        <div>$178,944</div>
+        <div class="val-good">4.1%</div>
+        <div class="val-good">$56.9</div>
+        <div>285 msgs</div>
+        <div>
+          <div>Muy Alta</div>
+          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:85%;background:#5ddb8a"></div></div>
+        </div>
+      </div>
+
+      <div class="creative-row">
+        <div>
+          <div class="creative-name">AD 1 / Reel Español</div>
+          <div class="creative-format">Video Reel</div>
+        </div>
+        <div>$179,404</div>
+        <div class="val-warn">3.0%</div>
+        <div class="val-good">$48.4</div>
+        <div>576 msgs</div>
+        <div>
+          <div>Alta</div>
+          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:75%;background:#5ddb8a"></div></div>
+        </div>
+      </div>
+
+      <div class="creative-row">
+        <div>
+          <div class="creative-name">AD 2 / Reel Portugués</div>
+          <div class="creative-format">Video Reel</div>
+        </div>
+        <div>$178,315</div>
+        <div class="val-warn">2.5%</div>
+        <div class="val-bad">$137.6</div>
+        <div>115 msgs</div>
+        <div>
+          <div>Media</div>
+          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:45%;background:#e8c96a"></div></div>
+        </div>
+      </div>
+
+      <div class="creative-row">
+        <div>
+          <div class="creative-name">AD 1 / Reel Portugués</div>
+          <div class="creative-format">Video Reel</div>
+        </div>
+        <div>$179,137</div>
+        <div class="val-bad">1.6%</div>
+        <div class="val-bad">$199.3</div>
+        <div>115 msgs</div>
+        <div>
+          <div>Baja</div>
+          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:25%;background:#e06060"></div></div>
+        </div>
+      </div>
+
+      <div class="creative-row">
+        <div>
+          <div class="creative-name">AD 1 / Aconcagua Nuevo</div>
+          <div class="creative-format">Video</div>
+        </div>
+        <div>$8,056</div>
+        <div class="val-good">5.4%</div>
+        <div class="val-good">$103.3</div>
+        <div>7 leads</div>
+        <div>
+          <div>Promisorio</div>
+          <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:60%;background:#5ddb8a"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 4: CONCLUSIONES ═══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-num">04</div>
+      <h2 class="section-title">Conclusiones <em>Estratégicas</em></h2>
+    </div>
+
+    <div class="conclusions fade-in">
+      <div class="conclusions-title">Hallazgos clave</div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">01</div>
+        <div class="conclusion-text">
+          <strong>India: el mercado de mayor eficiencia</strong>
+          <p>Con un <b>CPC de $9.19</b> y <b>820K impresiones</b>, India es el mercado más eficiente de la cuenta. Generó <b>413 leads</b> con una inversión razonable. Se recomienda escalar el presupuesto y testear nuevos creativos adaptados culturalmente para maximizar el volumen de leads a bajo costo.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">02</div>
+        <div class="conclusion-text">
+          <strong>Alemania: mercado con bajo retorno — revisar urgente</strong>
+          <p>Alemania presenta el <b>CPC más alto de todos los mercados ($397.3)</b> con solo <b>36 leads generados</b> y un CTR de 3.2%. Invertir $224K para este volumen de conversiones no es sostenible. Se recomienda revisar la segmentación de audiencia, los creativos utilizados y evaluar reducir la inversión o pausa temporal.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">03</div>
+        <div class="conclusion-text">
+          <strong>Francia: el mejor equilibrio en Europa</strong>
+          <p>Con un <b>CTR del 5.1%</b> y <b>106 leads</b>, Francia es el mercado europeo con mejor rendimiento. El CPC de <b>$116.6</b> lo posiciona como viable para escalar. Es el mercado europeo con mayor potencial de crecimiento en la actualidad.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">04</div>
+        <div class="conclusion-text">
+          <strong>AD 1 / Reel Portugués: creativo a reemplazar</strong>
+          <p>Con el <b>CTR más bajo (1.6%)</b> y un <b>CPC de $199.3</b>, el Reel en portugués para Brasil está bajo-rendimiento a pesar de una inversión de $179K. Se recomienda crear y testear un nuevo creativo en portugués, posiblemente adaptando el formato o el mensaje al mercado brasileño.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">05</div>
+        <div class="conclusion-text">
+          <strong>AD 1 / Aconcagua Nuevo: creativo a escalar</strong>
+          <p>A pesar de un presupuesto mínimo ($8K), este creativo muestra el <b>CTR más alto de todos los creativos (5.4%)</b>. Con tan poco gasto, los resultados son prometedores. Se recomienda aumentar progresivamente el presupuesto y ampliar su distribución a más mercados para validar su potencial a mayor escala.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">06</div>
+        <div class="conclusion-text">
+          <strong>Argentina y Chile: sólidas para interacción y mensajería</strong>
+          <p>Las campañas de interacción en Argentina (<b>613 mensajes</b>, CPC $54.9) y Chile (<b>235 mensajes</b>, CPC $42.8) muestran buenos resultados de engagement a costos bajos. La frecuencia controlada (~1.6x) indica que el agotamiento de audiencia no es un problema aún. Mantener y monitorear.</p>
+        </div>
+      </div>
+
+      <div class="conclusion-item">
+        <div class="conclusion-num">07</div>
+        <div class="conclusion-text">
+          <strong>Acciones prioritarias recomendadas</strong>
+          <p>
+            <b>↑ Escalar:</b> India + Francia + Aconcagua Nuevo creativo.<br>
+            <b>↔ Mantener:</b> EE.UU., Canadá, Argentina, Chile, Reels en español.<br>
+            <b>↓ Optimizar:</b> Alemania (revisar segmentación), Brasil (nuevo creativo en PT), AD 1 Reel Portugués (pausar o reemplazar).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="container">
+    AMG · Adventure Marketing Group · Informe generado con datos de Facebook Ads vía Windsor.ai · Abril 2026
+  </div>
+</footer>
+
+<script>
+// ── Colors ──
+const C = {
+  accent: '#4a9eda',
+  accent2: '#6dbfff',
+  gold: '#c9a84c',
+  muted: 'rgba(122,154,181,0.5)',
+  white: '#f0f4f8',
+  grid: 'rgba(74,158,218,0.1)',
+  green: '#5ddb8a',
+  red: '#e06060',
+};
+
+const baseOpts = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false } },
+  scales: {
+    x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, maxRotation: 35 }, grid: { color: C.grid }, border: { color: 'transparent' } },
+    y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 } }, grid: { color: C.grid }, border: { color: 'transparent' } }
+  }
+};
+
+// 1. Inversión por campaña (horizontal bar)
+new Chart(document.getElementById('chartCampSpend'), {
+  type: 'bar',
+  data: {
+    labels: ['Interacción/Trekking','Leads/India','Leads/Brasil','Leads/Canada','Leads/UK','Leads/Alemania','Leads/Francia','Leads/EE.UU.','Int/PdA Español','Int/PdA Portugués','Leads/PdA Inglés'],
+    datasets: [{
+      data: [357484,251438,238944,224873,224597,224102,224265,222299,179404,179137,17617],
+      backgroundColor: [C.gold,C.accent,C.accent,C.accent,C.accent,C.red,C.green,C.accent,C.gold,C.gold,C.muted],
+      borderWidth: 0,
+      borderRadius: 2,
+    }]
+  },
+  options: { ...baseOpts, indexAxis: 'y',
+    scales: {
+      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => '$' + Math.round(v/1000) + 'K' }, grid: { color: C.grid }, border: { color: 'transparent' } },
+      y: { ticks: { color: '#a0bfd4', font: { family: 'Barlow Condensed', size: 11 } }, grid: { display: false }, border: { color: 'transparent' } }
+    }
+  }
+});
+
+// 2. Distribución por objetivo (donut)
+new Chart(document.getElementById('chartObjective'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Leads (int\'l)','Interacción LATAM','Leads PdA'],
+    datasets: [{
+      data: [1890180, 358345, 17617],
+      backgroundColor: [C.accent, C.gold, C.muted],
+      borderWidth: 0,
+      hoverOffset: 8,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '65%',
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, padding: 16, boxWidth: 10, boxHeight: 10 }
+      }
+    }
+  }
+});
+
+// 3. Country: grouped bar (inversión + conversiones)
+new Chart(document.getElementById('chartCountry'), {
+  type: 'bar',
+  data: {
+    labels: ['India','Brasil','Francia','Canadá','UK','Alemania','EE.UU.','Argentina','Chile','Uruguay'],
+    datasets: [
+      { label: 'Inversión ($K)', data: [251,417,224,225,225,224,240,278,71,10], backgroundColor: C.accent, borderWidth: 0, borderRadius: 2 },
+      { label: 'Conversiones', data: [413,419,106,73,55,36,65,613,235,13], backgroundColor: C.gold, borderWidth: 0, borderRadius: 2, yAxisID: 'y2' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true, position: 'top',
+        labels: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, boxWidth: 10, boxHeight: 10 }
+      }
+    },
+    scales: {
+      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 11 }, maxRotation: 35 }, grid: { color: C.grid }, border: { color: 'transparent' } },
+      y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => '$' + v + 'K' }, grid: { color: C.grid }, border: { color: 'transparent' } },
+      y2: { position: 'right', ticks: { color: C.gold, font: { family: 'Barlow Condensed', size: 10 } }, grid: { display: false }, border: { color: 'transparent' } }
+    }
+  }
+});
+
+// 4. CTR radar / horizontal bar
+new Chart(document.getElementById('chartCTR'), {
+  type: 'bar',
+  data: {
+    labels: ['EE.UU.','Francia','Uruguay','UK','Canadá','Argentina','India','Chile','Alemania','Brasil'],
+    datasets: [{
+      data: [6.2, 5.1, 4.0, 4.2, 3.9, 3.5, 3.3, 3.1, 3.2, 1.8],
+      backgroundColor: [C.green,C.green,C.accent,C.accent,C.accent,C.accent,C.accent,C.gold,C.gold,C.red],
+      borderWidth: 0, borderRadius: 2
+    }]
+  },
+  options: { ...baseOpts, indexAxis: 'y',
+    scales: {
+      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => v + '%' }, grid: { color: C.grid }, border: { color: 'transparent' } },
+      y: { ticks: { color: '#a0bfd4', font: { family: 'Barlow Condensed', size: 11 } }, grid: { display: false }, border: { color: 'transparent' } }
+    }
+  }
+});
+
+// 5. Creative CTR
+new Chart(document.getElementById('chartCreativeCTR'), {
+  type: 'bar',
+  data: {
+    labels: ['Aconcagua\nNuevo','AD2 Reel\nEspañol','AD1 Reel\nInglés','AD1 Reel\nEspañol','AD2 Aconcagua\nViejo','AD2 Reel\nPortugués','AD3\nImagen','AD1 Reel\nPortugués'],
+    datasets: [{
+      data: [5.4, 4.1, 3.8, 3.0, 2.9, 2.5, 1.9, 1.6],
+      backgroundColor: [C.green,C.green,C.accent,C.accent,C.accent,C.gold,C.gold,C.red],
+      borderWidth: 0, borderRadius: 2
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, maxRotation: 40 }, grid: { color: C.grid }, border: { color: 'transparent' } },
+      y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, callback: v => v + '%' }, grid: { color: C.grid }, border: { color: 'transparent' } }
+    }
+  }
+});
+
+// 6. Creative Conversions
+new Chart(document.getElementById('chartCreativeConv'), {
+  type: 'bar',
+  data: {
+    labels: ['AD3\nImagen','AD1 Reel\nEspañol','AD2 Reel\nEspañol','AD2 Reel\nPort.','AD1 Reel\nPort.','AD2\nAconcagua','AD1\nAconcagua'],
+    datasets: [{
+      data: [842, 576, 285, 115, 115, 50, 7],
+      backgroundColor: [C.accent, C.green, C.green, C.gold, C.gold, C.gold, C.muted],
+      borderWidth: 0, borderRadius: 2
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 }, maxRotation: 40 }, grid: { color: C.grid }, border: { color: 'transparent' } },
+      y: { ticks: { color: C.muted, font: { family: 'Barlow Condensed', size: 10 } }, grid: { color: C.grid }, border: { color: 'transparent' } }
+    }
+  }
+});
+
+// ── Scroll animations ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
